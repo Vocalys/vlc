@@ -796,6 +796,8 @@ void InputManager::UpdateProgramEvent()
 }
 
 /* User update of the slider */
+// VOCALYS
+// bind this method with new_pos = 0 to reset the media
 void InputManager::sliderUpdate( float new_pos )
 {
     if( hasInput() )
@@ -1094,21 +1096,29 @@ void MainInputManager::customEvent( QEvent *event )
 }
 
 /* Playlist Control functions */
+// VOCALYS
+// Bind this method for stopping a media.
 void MainInputManager::stop()
 {
    playlist_Stop( THEPL );
 }
 
+// VOCALYS
+// Bind this method for next.
 void MainInputManager::next()
 {
    playlist_Next( THEPL );
 }
 
+// VOCALYS
+// Bind this method for next.
 void MainInputManager::prev()
 {
    playlist_Prev( THEPL );
 }
 
+// VOCALYS
+// Bind this method for next.
 void MainInputManager::prevOrReset()
 {
     if( !p_input || var_GetTime(  p_input , "time") < 10000 )
@@ -1116,6 +1126,9 @@ void MainInputManager::prevOrReset()
     else
         getIM()->sliderUpdate( 0.0 );
 }
+
+// VOCALYS
+// bind this method for play and pause
 
 void MainInputManager::togglePlayPause()
 {
@@ -1125,6 +1138,9 @@ void MainInputManager::togglePlayPause()
     else
         playlist_Pause( THEPL );
 }
+
+// VOCALYS
+// bind this method for play
 
 void MainInputManager::play()
 {
@@ -1139,6 +1155,9 @@ void MainInputManager::play()
         }
     }
 }
+
+// VOCALYS
+// bind this method for pause
 
 void MainInputManager::pause()
 {
