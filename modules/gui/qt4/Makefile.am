@@ -14,6 +14,10 @@ guidir = $(pluginsdir)/gui
 
 SUFFIXES += .ui .h .hpp .moc.cpp
 
+# VOCALYS
+# libqt4_plugin_la_CXXFLAGS, libqt4_plugin_la_LIBADD, libqt4_plugin_la_LDFLAGS needs to be modified for the Vocalys API.
+# 
+
 libqt4_plugin_la_CXXFLAGS = $(AM_CXXFLAGS) $(QT_CFLAGS)
 libqt4_plugin_la_LIBADD = $(QT_LIBS)
 libqt4_plugin_la_LDFLAGS = $(AM_LDFLAGS) -rpath '$(guidir)'

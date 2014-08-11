@@ -562,7 +562,18 @@ static void *Thread( void *obj )
     if( s_style.compare("") != 0 )
         QApplication::setStyle( s_style );
 
+      // VOCALYS
+      // All bindings should apply here.
+
     /* Launch */
+      // VOCALYS
+      // This needs to be replaced by 
+      // while(QCoreApplication::closingDown() == false)
+      // {
+      //  QCoreApplication::processEvents();
+      // check network input
+      // }
+      // 
     app.exec();
 
     msg_Dbg( p_intf, "QApp exec() finished" );
