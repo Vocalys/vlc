@@ -26,6 +26,10 @@
 # include "config.h"
 #endif
 
+#include <vocalys/common/pervasives.hpp>
+#include <vocalys/api/Parameters.hpp>
+#include <vocalys/api/api.hpp>
+
 #include <QApplication>
 #include <QDate>
 #include <QMutex>
@@ -59,6 +63,10 @@
   Q_IMPORT_PLUGIN(qtaccessiblewidgets)
  #endif
 #endif
+
+// FOR VOCALYS
+
+
 
 /*****************************************************************************
  * Local prototypes.
@@ -565,17 +573,24 @@ static void *Thread( void *obj )
       // VOCALYS
       // All bindings should apply here.
 
-    /* Launch */
-      // VOCALYS
-      // This needs to be replaced by 
-      // while(QCoreApplication::closingDown() == false)
-      // {
-      //  QCoreApplication::processEvents();
-      // check network input
-      // }
-      // 
-    app.exec();
+      vocalys::init();
+      API v_api("Hello World");
+      v_api.init();
+      Archetypes::Generical* pauseArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::pause);
+      vocalib.addArchetype(pauseArchetype);
+      pauseArchetype->getKeywords().add(FRENCH, "pause");
+      pauseArchetype->getKeywords().add(ENGLISH, "pause");
 
+      Archetypes::Generical* playArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::play);
+      vocalib.addArchetype(pauseArchetype);
+      pauseArchetype->getKeywords().add(FRENCH, "play");
+      pauseArchetype->getKeywords().add(ENGLISH, "play");
+      while(QCoreApplication::closingDown() == false)
+      {
+        QCoreApplication::processEvents();
+        v_api.update();
+      }
+      
     msg_Dbg( p_intf, "QApp exec() finished" );
     if (p_mi != NULL)
     {

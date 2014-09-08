@@ -18,15 +18,16 @@ SUFFIXES += .ui .h .hpp .moc.cpp
 # libqt4_plugin_la_CXXFLAGS, libqt4_plugin_la_LIBADD, libqt4_plugin_la_LDFLAGS needs to be modified for the Vocalys API.
 # 
 
-libqt4_plugin_la_CXXFLAGS = $(AM_CXXFLAGS) $(QT_CFLAGS)
+libqt4_plugin_la_CXXFLAGS = $(AM_CXXFLAGS) $(QT_CFLAGS) -std=c++0x -I/usr/local/include -I/usr/local/include/vocalys
 libqt4_plugin_la_LIBADD = $(QT_LIBS)
-libqt4_plugin_la_LDFLAGS = $(AM_LDFLAGS) -rpath '$(guidir)'
+libqt4_plugin_la_LDFLAGS = $(AM_LDFLAGS) -rpath '$(guidir)' -lvocalys -lvocalys_system
 if HAVE_OS2
 else
 if HAVE_WIN32
 libqt4_plugin_la_LIBADD += -lole32
 else
 libqt4_plugin_la_LIBADD += $(X_LIBS) $(X_PRE_LIB) -lX11
+libqt4_plugin_la_LDFLAGS += -lpthread
 endif
 endif
 if HAVE_DARWIN
