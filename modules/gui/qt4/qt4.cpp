@@ -574,21 +574,21 @@ static void *Thread( void *obj )
       // All bindings should apply here.
 
       vocalys::init();
-      API v_api("Hello World");
-      v_api.init();
+      API vocalib("Hello World");
+      vocalib.init();
       Archetypes::Generical* pauseArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::pause);
       vocalib.addArchetype(pauseArchetype);
       pauseArchetype->getKeywords().add(FRENCH, "pause");
       pauseArchetype->getKeywords().add(ENGLISH, "pause");
 
       Archetypes::Generical* playArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::play);
-      vocalib.addArchetype(pauseArchetype);
-      pauseArchetype->getKeywords().add(FRENCH, "play");
-      pauseArchetype->getKeywords().add(ENGLISH, "play");
+      vocalib.addArchetype(playArchetype);
+      playArchetype->getKeywords().add(FRENCH, "play");
+      playArchetype->getKeywords().add(ENGLISH, "play");
       while(QCoreApplication::closingDown() == false)
       {
         QCoreApplication::processEvents();
-        v_api.update();
+        vocalib.update();
       }
       
     msg_Dbg( p_intf, "QApp exec() finished" );
