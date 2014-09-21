@@ -24,3 +24,13 @@ If you are not under ubuntu you may have more problems:
 The compilation with make will raises missing libraries issues. Install them one by one.
 You can use the contrib solution. However, it does not work on every linux distribution.
 
+
+==========Keywords supported========
+next
+previous
+play
+pause
+stop
+full screen
+maximize screen
+minimize screen
