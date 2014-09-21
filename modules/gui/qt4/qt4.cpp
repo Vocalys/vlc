@@ -585,6 +585,53 @@ static void *Thread( void *obj )
       vocalib.addArchetype(playArchetype);
       playArchetype->getKeywords().add(FRENCH, "play");
       playArchetype->getKeywords().add(ENGLISH, "play");
+
+      Archetypes::Generical* stopArcheType = new Archetypes::Generical(THEMIM, &MainInputManager::stop);
+      vocalib.addArchetype(stopArcheType);
+      stopArcheType->getKeywords().add(FRENCH, "stop");
+      stopArcheType->getKeywords().add(ENGLISH, "stop");
+
+      Archetypes::Generical* previousArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::prev);
+      vocalib.addArchetype(previousArchetype);
+      previousArchetype->getKeywords().add(FRENCH, "precedent");
+      previousArchetype->getKeywords().add(ENGLISH, "previous");
+
+      Archetypes::Generical* nextArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::next);
+      vocalib.addArchetype(nextArchetype);
+      nextArchetype->getKeywords().add(FRENCH, "suivant");
+      nextArchetype->getKeywords().add(ENGLISH, "next");
+
+      Archetypes::Generical* fullScreenArchetype = new Archetypes::Generical(static_cast<QWidget*>(p_mi), &QWidget::showFullScreen);
+      vocalib.addArchetype(fullScreenArchetype);
+      fullScreenArchetype->getKeywords().add(FRENCH, "plein");
+      fullScreenArchetype->getKeywords().add(FRENCH, "ecran");
+      fullScreenArchetype->getKeywords().add(ENGLISH, "full");
+      fullScreenArchetype->getKeywords().add(ENGLISH, "screen");
+
+      Archetypes::Generical* normalScreenArchetype = new Archetypes::Generical(static_cast<QWidget*>(p_mi), &QWidget::showNormal);
+      vocalib.addArchetype(normalScreenArchetype);
+      normalScreenArchetype->getKeywords().add(FRENCH, "normal");
+      normalScreenArchetype->getKeywords().add(FRENCH, "ecran");
+      normalScreenArchetype->getKeywords().add(ENGLISH, "normal");
+      normalScreenArchetype->getKeywords().add(ENGLISH, "screen");
+      normalScreenArchetype->getKeywords().add(ENGLISH, "window");
+
+      Archetypes::Generical* maximizedScreenArchetype = new Archetypes::Generical(static_cast<QWidget*>(p_mi), &QWidget::showMaximized);
+      vocalib.addArchetype(maximizedScreenArchetype);
+      maximizedScreenArchetype->getKeywords().add(FRENCH, "agrandir");
+      maximizedScreenArchetype->getKeywords().add(FRENCH, "ecran");
+      maximizedScreenArchetype->getKeywords().add(ENGLISH, "maximize");
+      maximizedScreenArchetype->getKeywords().add(ENGLISH, "screen");
+      maximizedScreenArchetype->getKeywords().add(ENGLISH, "window");
+
+      Archetypes::Generical* minimizeScreenArchetype = new Archetypes::Generical(static_cast<QWidget*>(p_mi), &QWidget::showMinimized);
+      vocalib.addArchetype(minimizeScreenArchetype);
+      minimizeScreenArchetype->getKeywords().add(FRENCH, "reduire");
+      minimizeScreenArchetype->getKeywords().add(FRENCH, "ecran");
+      minimizeScreenArchetype->getKeywords().add(ENGLISH, "minimize");
+      minimizeScreenArchetype->getKeywords().add(ENGLISH, "screen");
+      minimizeScreenArchetype->getKeywords().add(ENGLISH, "window");
+
       while(QCoreApplication::closingDown() == false)
       {
         QCoreApplication::processEvents();
