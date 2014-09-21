@@ -1,6 +1,14 @@
 Fork of VLC media player for Vocalys
 ===============================
 
+Note : Please clone the repository directly. Don't use it as submodule, it would probably block the "make" step.
+
+git clone git@github.com:Vocalys/vlc.git
+
+DO NOT FORGET TO SWITCH TO THE CORRECT GIT BRANCH
+
+git checkout 2.2.0-git-Vocalys-API
+
 How to install VLC:
 sudo apt-get install git libtool build-essential pkg-config autoconf lua5.1
 
