@@ -27,7 +27,7 @@
 #endif
 
 #include <vocalys/common/pervasives.hpp>
-#include <vocalys/api/Parameters.hpp>
+#include <vocalys/api/parameters/Parameters.hpp>
 #include <vocalys/api/api.hpp>
 
 #include <QApplication>
