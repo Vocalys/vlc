@@ -1111,7 +1111,7 @@ void MainInputManager::next()
 }
 
 // VOCALYS
-// Bind this method for next.
+// Bind this method for previous.
 void MainInputManager::prev()
 {
    playlist_Prev( THEPL );
