@@ -49,6 +49,8 @@ public:
                                    bool b_start = true,
                                    bool b_playlist = true,
                                    const char* title = NULL);
+
+    static int openFile(const QString &fileName);
 };
 
 class RecentsMRL : public QObject, public Singleton<RecentsMRL>
