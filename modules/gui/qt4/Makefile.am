@@ -39,6 +39,8 @@ EXTRA_LTLIBRARIES = libqt4_plugin.la
 
 libqt4_plugin_la_SOURCES = \
 	qt4.cpp qt4.hpp \
+	media_folder.cpp \
+	media_file.cpp \
 	menus.cpp menus.hpp \
 	main_interface.cpp main_interface.hpp \
 	dialogs_provider.cpp dialogs_provider.hpp \
