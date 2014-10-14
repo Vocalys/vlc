@@ -640,15 +640,15 @@ static void *Thread( void *obj )
       MediaFolder mediaFolder;
       if (mediaFolder.hasMediaFolder())
       {
-          Archetypes::MultipleChoicesString* multipleChoicesInteger = new Archetypes::MultipleChoicesString;
-          multipleChoicesInteger->setName(FRENCH, "nom de fichier");
-          multipleChoicesInteger->setName(ENGLISH, "file name");
-          multipleChoicesInteger->getKeywords().add(ENGLISH, "file");
-          multipleChoicesInteger->getKeywords().add(ENGLISH, "filename");
-          multipleChoicesInteger->getKeywords().add(ENGLISH, "name");
-          multipleChoicesInteger->getKeywords().add(ENGLISH, "open");
-          multipleChoicesInteger->getKeywords().add(FRENCH, "nom");
-          multipleChoicesInteger->getKeywords().add(FRENCH, "fichier");
+          Archetypes::MultipleChoicesString* MultipleChoicesString = new Archetypes::MultipleChoicesString;
+          MultipleChoicesString->setName(FRENCH, "nom de fichier");
+          MultipleChoicesString->setName(ENGLISH, "file name");
+          MultipleChoicesString->getKeywords().add(ENGLISH, "file");
+          MultipleChoicesString->getKeywords().add(ENGLISH, "filename");
+          MultipleChoicesString->getKeywords().add(ENGLISH, "name");
+          MultipleChoicesString->getKeywords().add(ENGLISH, "open");
+          MultipleChoicesString->getKeywords().add(FRENCH, "nom");
+          MultipleChoicesString->getKeywords().add(FRENCH, "fichier");
           std::list<MediaFile> mediaFileList = mediaFolder.getMediaFileList();
           std::list<MediaFile>::const_iterator mediaFileListIterator = mediaFileList.begin();
           for (; mediaFileListIterator != mediaFileList.end(); ++mediaFileListIterator)
@@ -657,7 +657,7 @@ static void *Thread( void *obj )
                 std::list<std::string>::const_iterator stringListIterator;
                 for (stringListIterator = keywordsList.begin(); stringListIterator != keywordsList.end(); ++stringListIterator)
                 {
-                    multipleChoicesInteger->addValue(mediaFileListIterator->path(), ENGLISH, *stringListIterator);
+                    MultipleChoicesString->addValue(mediaFileListIterator->path(), ENGLISH, *stringListIterator);
                 }
           }
           Archetypes::Generical* openingArchetype = new Archetypes::Generical(&openFile);
@@ -666,7 +666,7 @@ static void *Thread( void *obj )
           openingArchetype->getKeywords().add(FRENCH, "fichier");
           openingArchetype->getKeywords().add(ENGLISH, "open");
           openingArchetype->getKeywords().add(ENGLISH, "file");
-          openingArchetype->addParameter(multipleChoicesInteger);
+          openingArchetype->addParameter(MultipleChoicesString);
       }
       else
       {
