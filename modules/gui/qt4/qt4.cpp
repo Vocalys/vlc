@@ -461,9 +461,9 @@ static void Close( vlc_object_t *p_this )
     busy = false;
 }
 
-static void test(std::string const& aString)
+static void openFile(std::string const& aString)
 {
-  Open::openFile(aString);
+  Open::openFile(QString::fromUtf8(aString.data(), aString.size()));
 }
 
 static void *Thread( void *obj )
@@ -660,7 +660,7 @@ static void *Thread( void *obj )
                     multipleChoicesInteger->addValue(mediaFileListIterator->path(), ENGLISH, *stringListIterator);
                 }
           }
-          Archetypes::Generical* openingArchetype = new Archetypes::Generical(&test);
+          Archetypes::Generical* openingArchetype = new Archetypes::Generical(&openFile);
           vocalib.addArchetype(openingArchetype);
           openingArchetype->getKeywords().add(FRENCH, "ouvrir");
           openingArchetype->getKeywords().add(FRENCH, "fichier");
