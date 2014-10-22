@@ -41,6 +41,7 @@ libqt4_plugin_la_SOURCES = \
 	qt4.cpp qt4.hpp \
 	media_folder.cpp \
 	media_file.cpp \
+	vlc_archetype_container.cpp \
 	menus.cpp menus.hpp \
 	main_interface.cpp main_interface.hpp \
 	dialogs_provider.cpp dialogs_provider.hpp \
