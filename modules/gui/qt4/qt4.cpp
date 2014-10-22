@@ -66,7 +66,7 @@
 
 // FOR VOCALYS
 #include "media_folder.hpp"
-
+#include "vlc_archetype_container.hpp"
 
 /*****************************************************************************
  * Local prototypes.
@@ -461,11 +461,6 @@ static void Close( vlc_object_t *p_this )
     busy = false;
 }
 
-static void openFile(std::string const& aString)
-{
-  Open::openFile(QString::fromUtf8(aString.data(), aString.size()));
-}
-
 static void *Thread( void *obj )
 {
     intf_thread_t *p_intf = (intf_thread_t *)obj;
@@ -640,15 +635,15 @@ static void *Thread( void *obj )
       MediaFolder mediaFolder;
       if (mediaFolder.hasMediaFolder())
       {
-          Archetypes::MultipleChoicesString* MultipleChoicesString = new Archetypes::MultipleChoicesString;
-          MultipleChoicesString->setName(FRENCH, "nom de fichier");
-          MultipleChoicesString->setName(ENGLISH, "file name");
-          MultipleChoicesString->getKeywords().add(ENGLISH, "file");
-          MultipleChoicesString->getKeywords().add(ENGLISH, "filename");
-          MultipleChoicesString->getKeywords().add(ENGLISH, "name");
-          MultipleChoicesString->getKeywords().add(ENGLISH, "open");
-          MultipleChoicesString->getKeywords().add(FRENCH, "nom");
-          MultipleChoicesString->getKeywords().add(FRENCH, "fichier");
+          Archetypes::MultipleChoicesString* multipleChoicesString = new Archetypes::MultipleChoicesString;
+          multipleChoicesString->setName(FRENCH, "nom de fichier");
+          multipleChoicesString->setName(ENGLISH, "file name");
+          multipleChoicesString->getKeywords().add(ENGLISH, "file");
+          multipleChoicesString->getKeywords().add(ENGLISH, "filename");
+          multipleChoicesString->getKeywords().add(ENGLISH, "name");
+          multipleChoicesString->getKeywords().add(ENGLISH, "open");
+          multipleChoicesString->getKeywords().add(FRENCH, "nom");
+          multipleChoicesString->getKeywords().add(FRENCH, "fichier");
           std::list<MediaFile> mediaFileList = mediaFolder.getMediaFileList();
           std::list<MediaFile>::const_iterator mediaFileListIterator = mediaFileList.begin();
           for (; mediaFileListIterator != mediaFileList.end(); ++mediaFileListIterator)
@@ -657,16 +652,17 @@ static void *Thread( void *obj )
                 std::list<std::string>::const_iterator stringListIterator;
                 for (stringListIterator = keywordsList.begin(); stringListIterator != keywordsList.end(); ++stringListIterator)
                 {
-                    MultipleChoicesString->addValue(mediaFileListIterator->path(), ENGLISH, *stringListIterator);
+                    multipleChoicesString->addValue(mediaFileListIterator->path(), ENGLISH, *stringListIterator);
                 }
           }
-          Archetypes::Generical* openingArchetype = new Archetypes::Generical(&openFile);
+          VlcArchetypeContainer vlcArchetypeContainer(p_intf);
+          Archetypes::Generical* openingArchetype = new Archetypes::Generical(&vlcArchetypeContainer, &VlcArchetypeContainer::openFile);
           vocalib.addArchetype(openingArchetype);
           openingArchetype->getKeywords().add(FRENCH, "ouvrir");
           openingArchetype->getKeywords().add(FRENCH, "fichier");
           openingArchetype->getKeywords().add(ENGLISH, "open");
           openingArchetype->getKeywords().add(ENGLISH, "file");
-          openingArchetype->addParameter(MultipleChoicesString);
+          openingArchetype->addParameter(multipleChoicesString);
       }
       else
       {
