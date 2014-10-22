@@ -7,7 +7,7 @@ VlcArchetypeContainer::VlcArchetypeContainer(intf_thread_t* p_intf)
 
 }
 
-void	VlcArchetypeContainer::openFile(std::string aString) const
+bool	VlcArchetypeContainer::openFile(std::string const& aString)
 {
-	Open::openFile(_p_intf, aString);
+	Open::openFile(_p_intf, QString::fromStdString(aString));
 }

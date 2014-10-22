@@ -9,7 +9,7 @@ class VlcArchetypeContainer
 public:
 	VlcArchetypeContainer(intf_thread_t* p_intf);
 
-	void	openFile(std::string const& aString) const;
+	bool	openFile(std::string const& aString);
 private:
 	intf_thread_t* _p_intf;
 };

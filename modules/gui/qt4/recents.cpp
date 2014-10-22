@@ -198,7 +198,7 @@ void RecentsMRL::setTime( const QString &mrl, const int64_t time )
 
 int Open::openFile(intf_thread_t *p_intf, QString const& fileName)
 {
-   return openMRL(p_intf, toURI(toNativeSeparators(file)));
+   return openMRL(p_intf, toURI(toNativeSeparators(fileName)));
 }
 
 int Open::openMRL( intf_thread_t *p_intf,
