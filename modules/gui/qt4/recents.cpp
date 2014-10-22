@@ -196,7 +196,7 @@ void RecentsMRL::setTime( const QString &mrl, const int64_t time )
         times[i_index] = QString::number( time / 1000 );
 }
 
-int Open::openFile(const QString &fileName)
+int Open::openFile(intf_thread_t *p_intf, QString const& fileName)
 {
    return openMRL(p_intf, toURI(toNativeSeparators(file)));
 }

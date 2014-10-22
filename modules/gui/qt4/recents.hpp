@@ -50,7 +50,7 @@ public:
                                    bool b_playlist = true,
                                    const char* title = NULL);
 
-    static int openFile(const QString &fileName);
+    static int openFile(intf_thread_t* p_intf, const QString& fileName);
 };
 
 class RecentsMRL : public QObject, public Singleton<RecentsMRL>
