@@ -24,7 +24,6 @@ If you are not under ubuntu you may have more problems:
 The compilation with make will raises missing libraries issues. Install them one by one.
 You can use the contrib solution. However, it does not work on every linux distribution.
 
-
 ==========Keywords supported========
 next
 previous
@@ -34,3 +33,7 @@ stop
 full screen
 maximize screen
 minimize screen
+
+===========Archetypes===========
+All archetypes are defined in the qt4.cpp file. It starts at the ~580th(ish) line.
+The file is located in Vocalys/target_softwares_external/vlc/modules/gui/qt4/qt4.cpp
