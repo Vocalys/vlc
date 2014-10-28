@@ -1,14 +1,14 @@
-#ifndef MEDIA_FILE
-#define MEDIA_FILE
+#ifndef MEDIA_FILE_HPP
+#define MEDIA_FILE_HPP
 
 #include <list>
 #include <string>
 
-class MediaFile
+class VocalysMediaFile
 {
 public:
-	MediaFile(std::string const& fullPath);
-	MediaFile(MediaFile const& mediaFile);
+	VocalysMediaFile(std::string const& fullPath);
+	VocalysMediaFile(VocalysMediaFile const& mediaFile);
 
 	std::string			path() const {return _path;}
 	std::string			fileNameWithoutExtention() const;

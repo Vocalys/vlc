@@ -3,14 +3,14 @@
 
 #include <string>
 #include <list>
-#include "media_file.hpp"
+#include "vocalys_media_file.hpp"
 
-class MediaFolder
+class VocalysMediaFolder
 {
 public:
-	MediaFolder();
+	VocalysMediaFolder();
 
-	std::list<MediaFile>		getMediaFileList() const;
+	std::list<VocalysMediaFile>		getMediaFileList() const;
 	bool						hasMediaFolder() const;
 
 private:

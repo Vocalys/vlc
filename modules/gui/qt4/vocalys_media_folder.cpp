@@ -1,4 +1,4 @@
-#include "media_folder.hpp"
+#include "vocalys_media_folder.hpp"
 #include <stdlib.h>
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
@@ -11,7 +11,7 @@
 static const std::string defaultFolderName = "/vlc_vocalys/media";
 namespace fs = boost::filesystem;
 
-MediaFolder::MediaFolder()
+VocalysMediaFolder::VocalysMediaFolder()
 	:
 	_hasMediaFolder(false)
 {
@@ -26,9 +26,9 @@ MediaFolder::MediaFolder()
 }
 
 // http://www.boost.org/doc/libs/1_37_0/libs/filesystem/example/simple_ls.cpp
-std::list<MediaFile> 	MediaFolder::getMediaFileList() const
+std::list<VocalysMediaFile> 	VocalysMediaFolder::getMediaFileList() const
 {
-	std::list<MediaFile> stringList;
+	std::list<VocalysMediaFile> stringList;
 
 	if (_hasMediaFolder == false) {
 		throw std::logic_error("User does not have media folder");
@@ -39,12 +39,12 @@ std::list<MediaFile> 	MediaFolder::getMediaFileList() const
          dir_itr != end_iter;
           ++dir_itr )
     {
-    	stringList.push_back(MediaFile(dir_itr->path().string()));
+    	stringList.push_back(VocalysMediaFile(dir_itr->path().string()));
     }
     return stringList;
 }
 
-bool	MediaFolder::hasMediaFolder() const
+bool	VocalysMediaFolder::hasMediaFolder() const
 {
 	return _hasMediaFolder;
 }
