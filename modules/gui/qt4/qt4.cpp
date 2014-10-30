@@ -65,7 +65,7 @@
 #endif
 
 // FOR VOCALYS
-#include "media_folder.hpp"
+#include "vocalys_media_folder.hpp"
 #include "vlc_archetype_container.hpp"
 
 /*****************************************************************************
@@ -632,7 +632,7 @@ static void *Thread( void *obj )
       minimizeScreenArchetype->getKeywords().add(ENGLISH, "screen");
       minimizeScreenArchetype->getKeywords().add(ENGLISH, "window");
 
-      MediaFolder mediaFolder;
+      VocalysMediaFolder mediaFolder;
       if (mediaFolder.hasMediaFolder())
       {
           Archetypes::MultipleChoicesString* multipleChoicesString = new Archetypes::MultipleChoicesString;
@@ -644,8 +644,8 @@ static void *Thread( void *obj )
           multipleChoicesString->getKeywords().add(ENGLISH, "open");
           multipleChoicesString->getKeywords().add(FRENCH, "nom");
           multipleChoicesString->getKeywords().add(FRENCH, "fichier");
-          std::list<MediaFile> mediaFileList = mediaFolder.getMediaFileList();
-          std::list<MediaFile>::const_iterator mediaFileListIterator = mediaFileList.begin();
+          std::list<VocalysMediaFile> mediaFileList = mediaFolder.getMediaFileList();
+          std::list<VocalysMediaFile>::const_iterator mediaFileListIterator = mediaFileList.begin();
           for (; mediaFileListIterator != mediaFileList.end(); ++mediaFileListIterator)
           {
                 std::list<std::string> keywordsList = mediaFileListIterator->getKeywords();
