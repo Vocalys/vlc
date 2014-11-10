@@ -39,9 +39,6 @@ EXTRA_LTLIBRARIES = libqt4_plugin.la
 
 libqt4_plugin_la_SOURCES = \
 	qt4.cpp qt4.hpp \
-	vlc_archetype_container.cpp vlc_archetype_container.hpp \
-	vocalys_media_folder.cpp vocalys_media_folder.hpp \
-	vocalys_media_file.cpp vocalys_media_file.hpp \
 	menus.cpp menus.hpp \
 	main_interface.cpp main_interface.hpp \
 	dialogs_provider.cpp dialogs_provider.hpp \
