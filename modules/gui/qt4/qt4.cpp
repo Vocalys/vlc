@@ -65,7 +65,7 @@
 #endif
 
 // FOR VOCALYS
-#include "vocalys_media_folder.hpp"
+// #include "vocalys_media_folder.hpp"
 #include "vlc_archetype_container.hpp"
 
 /*****************************************************************************
@@ -632,9 +632,9 @@ static void *Thread( void *obj )
       minimizeScreenArchetype->getKeywords().add(ENGLISH, "screen");
       minimizeScreenArchetype->getKeywords().add(ENGLISH, "window");
 
-      VocalysMediaFolder mediaFolder;
-      if (mediaFolder.hasMediaFolder())
-      {
+      // VocalysMediaFolder mediaFolder;
+      // if (mediaFolder.hasMediaFolder())
+      // {
           Archetypes::MultipleChoicesString* multipleChoicesString = new Archetypes::MultipleChoicesString;
           multipleChoicesString->setName(FRENCH, "nom de fichier");
           multipleChoicesString->setName(ENGLISH, "file name");
@@ -644,17 +644,20 @@ static void *Thread( void *obj )
           multipleChoicesString->getKeywords().add(ENGLISH, "open");
           multipleChoicesString->getKeywords().add(FRENCH, "nom");
           multipleChoicesString->getKeywords().add(FRENCH, "fichier");
-          std::list<VocalysMediaFile> mediaFileList = mediaFolder.getMediaFileList();
-          std::list<VocalysMediaFile>::const_iterator mediaFileListIterator = mediaFileList.begin();
-          for (; mediaFileListIterator != mediaFileList.end(); ++mediaFileListIterator)
-          {
-                std::list<std::string> keywordsList = mediaFileListIterator->getKeywords();
-                std::list<std::string>::const_iterator stringListIterator;
-                for (stringListIterator = keywordsList.begin(); stringListIterator != keywordsList.end(); ++stringListIterator)
-                {
-                    multipleChoicesString->addValue(mediaFileListIterator->path(), ENGLISH, *stringListIterator);
-                }
-          }
+
+          // Avatar
+          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4", ENGLISH, "Avatar");
+          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4", ENGLISH, "trailer");
+
+          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4", ENGLISH, "trailer");
+          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4", ENGLISH, "inception");
+
+          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Edward");
+          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Snowden");
+          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Truth");
+          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Unveiled");
+          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Documentary");
+
           VlcArchetypeContainer vlcArchetypeContainer(p_intf);
           Archetypes::Generical* openingArchetype = new Archetypes::Generical(&vlcArchetypeContainer, &VlcArchetypeContainer::openFile);
           vocalib.addArchetype(openingArchetype);
@@ -663,12 +666,6 @@ static void *Thread( void *obj )
           openingArchetype->getKeywords().add(ENGLISH, "open");
           openingArchetype->getKeywords().add(ENGLISH, "file");
           openingArchetype->addParameter(multipleChoicesString);
-      }
-      else
-      {
-        std::cerr << "Media Folder does not exist" << std::endl;
-      }
-
       while(QCoreApplication::closingDown() == false)
       {
         QCoreApplication::processEvents();
