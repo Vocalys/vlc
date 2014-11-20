@@ -579,7 +579,7 @@ static void *Thread( void *obj )
     namespace vap = vocalys::archetypes::parameter;
 
       vocalys::init();
-      API vocalib("Hello World");
+      vocalys::API vocalib("Hello World");
       vocalib.init();
       vaf::Generical* pauseArchetype = new vaf::Generical(THEMIM, &MainInputManager::pause);
       vocalib.getFunctions().add(pauseArchetype);
@@ -640,37 +640,37 @@ static void *Thread( void *obj )
       // VocalysMediaFolder mediaFolder;
       // if (mediaFolder.hasMediaFolder())
       // {
-          Archetypes::MultipleChoicesString* multipleChoicesString = new Archetypes::MultipleChoicesString;
-          multipleChoicesString->setName(vlang::FR, "nom de fichier");
-          multipleChoicesString->setName(vlang::EN, "file name");
-          multipleChoicesString->getKeywords().add(vlang::EN, "file");
-          multipleChoicesString->getKeywords().add(vlang::EN, "filename");
-          multipleChoicesString->getKeywords().add(vlang::EN, "name");
-          multipleChoicesString->getKeywords().add(vlang::EN, "open");
-          multipleChoicesString->getKeywords().add(vlang::FR, "nom");
-          multipleChoicesString->getKeywords().add(vlang::FR, "fichier");
+          vap::MultiString* multiString = new vap::MultiString;
+          multiString->getNames().setName(vlang::FR, "nom de fichier");
+          multiString->getNames().setName(vlang::EN, "file name");
+          multiString->getKeywords().add(vlang::EN, "file");
+          multiString->getKeywords().add(vlang::EN, "filename");
+          multiString->getKeywords().add(vlang::EN, "name");
+          multiString->getKeywords().add(vlang::EN, "open");
+          multiString->getKeywords().add(vlang::FR, "nom");
+          multiString->getKeywords().add(vlang::FR, "fichier");
 
           // Avatar
-          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4").getKeywords().add(vlang::EN, "Avatar");
-          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4").getKeywords().add(vlang::EN, "trailer");
+          multiString->getValues().add("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4").getKeywords().add(vlang::EN, "Avatar");
+          multiString->getValues().add("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4").getKeywords().add(vlang::EN, "trailer");
 
-          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4").getKeywords().add(vlang::EN, "trailer");
-          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4").getKeywords().add(vlang::EN, "inception");
+          multiString->getValues().add("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4").getKeywords().add(vlang::EN, "trailer");
+          multiString->getValues().add("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4").getKeywords().add(vlang::EN, "inception");
 
-          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Edward");
-          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Snowden");
-          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Truth");
-          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Unveiled");
-          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Documentary");
+          multiString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Edward");
+          multiString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Snowden");
+          multiString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Truth");
+          multiString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Unveiled");
+          multiString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Documentary");
 
           VlcArchetypeContainer vlcArchetypeContainer(p_intf);
-          Archetypes::Generical* openingArchetype = new Archetypes::Generical(&vlcArchetypeContainer, &VlcArchetypeContainer::openFile);
+          vaf::Generical* openingArchetype = new vaf::Generical(&vlcArchetypeContainer, &VlcArchetypeContainer::openFile);
           vocalib.getFunctions().add(openingArchetype);
           openingArchetype->getKeywords().add(vlang::FR, "ouvrir");
           openingArchetype->getKeywords().add(vlang::FR, "fichier");
           openingArchetype->getKeywords().add(vlang::EN, "open");
           openingArchetype->getKeywords().add(vlang::EN, "file");
-          openingArchetype->getParameters().add(multipleChoicesString);
+          openingArchetype->getParameters().add(multiString);
       while(QCoreApplication::closingDown() == false)
       {
         QCoreApplication::processEvents();

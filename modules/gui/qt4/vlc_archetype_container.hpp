@@ -14,7 +14,7 @@ public:
 
 	bool	openFile(std::string const& aString)
 	{
-		Open::openFile(_p_intf, QString::fromStdString(aString));
+		return Open::openFile(_p_intf, QString::fromStdString(aString));
 	}
 private:
 	intf_thread_t* _p_intf;
