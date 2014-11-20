@@ -26,7 +26,8 @@
 # include "config.h"
 #endif
 
-#include <vocalys/common/pervasives.hpp>
+#include <vocalys/common/init.hpp>
+#include <vocalys/common/string.hpp>
 #include <vocalys/api/parameters/Parameters.hpp>
 #include <vocalys/api/api.hpp>
 
@@ -573,105 +574,109 @@ static void *Thread( void *obj )
       // VOCALYS
       // All bindings should apply here.
 
+    namespace vlang = vocalys::lang;
+    namespace vaf = vocalys::archetypes::function;
+    namespace vap = vocalys::archetypes::parameter;
+
       vocalys::init();
       API vocalib("Hello World");
       vocalib.init();
-      Archetypes::Generical* pauseArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::pause);
-      vocalib.addArchetype(pauseArchetype);
-      pauseArchetype->getKeywords().add(FRENCH, "pause");
-      pauseArchetype->getKeywords().add(ENGLISH, "pause");
+      vaf::Generical* pauseArchetype = new vaf::Generical(THEMIM, &MainInputManager::pause);
+      vocalib.getFunctions().add(pauseArchetype);
+      pauseArchetype->getKeywords().add(vlang::FR, "pause");
+      pauseArchetype->getKeywords().add(vlang::EN, "pause");
 
-      Archetypes::Generical* playArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::play);
-      vocalib.addArchetype(playArchetype);
-      playArchetype->getKeywords().add(FRENCH, "play");
-      playArchetype->getKeywords().add(ENGLISH, "play");
+      vaf::Generical* playArchetype = new vaf::Generical(THEMIM, &MainInputManager::play);
+      vocalib.getFunctions().add(playArchetype);
+      playArchetype->getKeywords().add(vlang::FR, "play");
+      playArchetype->getKeywords().add(vlang::EN, "play");
 
-      Archetypes::Generical* stopArcheType = new Archetypes::Generical(THEMIM, &MainInputManager::stop);
-      vocalib.addArchetype(stopArcheType);
-      stopArcheType->getKeywords().add(FRENCH, "stop");
-      stopArcheType->getKeywords().add(ENGLISH, "stop");
+      vaf::Generical* stopArcheType = new vaf::Generical(THEMIM, &MainInputManager::stop);
+      vocalib.getFunctions().add(stopArcheType);
+      stopArcheType->getKeywords().add(vlang::FR, "stop");
+      stopArcheType->getKeywords().add(vlang::EN, "stop");
 
-      Archetypes::Generical* previousArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::prev);
-      vocalib.addArchetype(previousArchetype);
-      previousArchetype->getKeywords().add(FRENCH, "precedent");
-      previousArchetype->getKeywords().add(ENGLISH, "previous");
+      vaf::Generical* previousArchetype = new vaf::Generical(THEMIM, &MainInputManager::prev);
+      vocalib.getFunctions().add(previousArchetype);
+      previousArchetype->getKeywords().add(vlang::FR, "precedent");
+      previousArchetype->getKeywords().add(vlang::EN, "previous");
 
-      Archetypes::Generical* nextArchetype = new Archetypes::Generical(THEMIM, &MainInputManager::next);
-      vocalib.addArchetype(nextArchetype);
-      nextArchetype->getKeywords().add(FRENCH, "suivant");
-      nextArchetype->getKeywords().add(ENGLISH, "next");
+      vaf::Generical* nextArchetype = new vaf::Generical(THEMIM, &MainInputManager::next);
+      vocalib.getFunctions().add(nextArchetype);
+      nextArchetype->getKeywords().add(vlang::FR, "suivant");
+      nextArchetype->getKeywords().add(vlang::EN, "next");
 
-      Archetypes::Generical* fullScreenArchetype = new Archetypes::Generical(static_cast<QWidget*>(p_mi), &QWidget::showFullScreen);
-      vocalib.addArchetype(fullScreenArchetype);
-      fullScreenArchetype->getKeywords().add(FRENCH, "plein");
-      fullScreenArchetype->getKeywords().add(FRENCH, "ecran");
-      fullScreenArchetype->getKeywords().add(ENGLISH, "full");
-      fullScreenArchetype->getKeywords().add(ENGLISH, "screen");
+      vaf::Generical* fullScreenArchetype = new vaf::Generical(static_cast<QWidget*>(p_mi), &QWidget::showFullScreen);
+      vocalib.getFunctions().add(fullScreenArchetype);
+      fullScreenArchetype->getKeywords().add(vlang::FR, "plein");
+      fullScreenArchetype->getKeywords().add(vlang::FR, "ecran");
+      fullScreenArchetype->getKeywords().add(vlang::EN, "full");
+      fullScreenArchetype->getKeywords().add(vlang::EN, "screen");
 
-      Archetypes::Generical* normalScreenArchetype = new Archetypes::Generical(static_cast<QWidget*>(p_mi), &QWidget::showNormal);
-      vocalib.addArchetype(normalScreenArchetype);
-      normalScreenArchetype->getKeywords().add(FRENCH, "normal");
-      normalScreenArchetype->getKeywords().add(FRENCH, "ecran");
-      normalScreenArchetype->getKeywords().add(ENGLISH, "normal");
-      normalScreenArchetype->getKeywords().add(ENGLISH, "screen");
-      normalScreenArchetype->getKeywords().add(ENGLISH, "window");
+      vaf::Generical* normalScreenArchetype = new vaf::Generical(static_cast<QWidget*>(p_mi), &QWidget::showNormal);
+      vocalib.getFunctions().add(normalScreenArchetype);
+      normalScreenArchetype->getKeywords().add(vlang::FR, "normal");
+      normalScreenArchetype->getKeywords().add(vlang::FR, "ecran");
+      normalScreenArchetype->getKeywords().add(vlang::EN, "normal");
+      normalScreenArchetype->getKeywords().add(vlang::EN, "screen");
+      normalScreenArchetype->getKeywords().add(vlang::EN, "window");
 
-      Archetypes::Generical* maximizedScreenArchetype = new Archetypes::Generical(static_cast<QWidget*>(p_mi), &QWidget::showMaximized);
-      vocalib.addArchetype(maximizedScreenArchetype);
-      maximizedScreenArchetype->getKeywords().add(FRENCH, "agrandir");
-      maximizedScreenArchetype->getKeywords().add(FRENCH, "ecran");
-      maximizedScreenArchetype->getKeywords().add(ENGLISH, "maximize");
-      maximizedScreenArchetype->getKeywords().add(ENGLISH, "screen");
-      maximizedScreenArchetype->getKeywords().add(ENGLISH, "window");
+      vaf::Generical* maximizedScreenArchetype = new vaf::Generical(static_cast<QWidget*>(p_mi), &QWidget::showMaximized);
+      vocalib.getFunctions().add(maximizedScreenArchetype);
+      maximizedScreenArchetype->getKeywords().add(vlang::FR, "agrandir");
+      maximizedScreenArchetype->getKeywords().add(vlang::FR, "ecran");
+      maximizedScreenArchetype->getKeywords().add(vlang::EN, "maximize");
+      maximizedScreenArchetype->getKeywords().add(vlang::EN, "screen");
+      maximizedScreenArchetype->getKeywords().add(vlang::EN, "window");
 
-      Archetypes::Generical* minimizeScreenArchetype = new Archetypes::Generical(static_cast<QWidget*>(p_mi), &QWidget::showMinimized);
-      vocalib.addArchetype(minimizeScreenArchetype);
-      minimizeScreenArchetype->getKeywords().add(FRENCH, "reduire");
-      minimizeScreenArchetype->getKeywords().add(FRENCH, "ecran");
-      minimizeScreenArchetype->getKeywords().add(ENGLISH, "minimize");
-      minimizeScreenArchetype->getKeywords().add(ENGLISH, "screen");
-      minimizeScreenArchetype->getKeywords().add(ENGLISH, "window");
+      vaf::Generical* minimizeScreenArchetype = new vaf::Generical(static_cast<QWidget*>(p_mi), &QWidget::showMinimized);
+      vocalib.getFunctions().add(minimizeScreenArchetype);
+      minimizeScreenArchetype->getKeywords().add(vlang::FR, "reduire");
+      minimizeScreenArchetype->getKeywords().add(vlang::FR, "ecran");
+      minimizeScreenArchetype->getKeywords().add(vlang::EN, "minimize");
+      minimizeScreenArchetype->getKeywords().add(vlang::EN, "screen");
+      minimizeScreenArchetype->getKeywords().add(vlang::EN, "window");
 
       // VocalysMediaFolder mediaFolder;
       // if (mediaFolder.hasMediaFolder())
       // {
           Archetypes::MultipleChoicesString* multipleChoicesString = new Archetypes::MultipleChoicesString;
-          multipleChoicesString->setName(FRENCH, "nom de fichier");
-          multipleChoicesString->setName(ENGLISH, "file name");
-          multipleChoicesString->getKeywords().add(ENGLISH, "file");
-          multipleChoicesString->getKeywords().add(ENGLISH, "filename");
-          multipleChoicesString->getKeywords().add(ENGLISH, "name");
-          multipleChoicesString->getKeywords().add(ENGLISH, "open");
-          multipleChoicesString->getKeywords().add(FRENCH, "nom");
-          multipleChoicesString->getKeywords().add(FRENCH, "fichier");
+          multipleChoicesString->setName(vlang::FR, "nom de fichier");
+          multipleChoicesString->setName(vlang::EN, "file name");
+          multipleChoicesString->getKeywords().add(vlang::EN, "file");
+          multipleChoicesString->getKeywords().add(vlang::EN, "filename");
+          multipleChoicesString->getKeywords().add(vlang::EN, "name");
+          multipleChoicesString->getKeywords().add(vlang::EN, "open");
+          multipleChoicesString->getKeywords().add(vlang::FR, "nom");
+          multipleChoicesString->getKeywords().add(vlang::FR, "fichier");
 
           // Avatar
-          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4", ENGLISH, "Avatar");
-          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4", ENGLISH, "trailer");
+          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4").getKeywords().add(vlang::EN, "Avatar");
+          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Avatar Trailer.mp4").getKeywords().add(vlang::EN, "trailer");
 
-          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4", ENGLISH, "trailer");
-          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4", ENGLISH, "inception");
+          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4").getKeywords().add(vlang::EN, "trailer");
+          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Inception Trailer 2.mp4").getKeywords().add(vlang::EN, "inception");
 
-          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Edward");
-          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Snowden");
-          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Truth");
-          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Unveiled");
-          multipleChoicesString->addValue("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4", ENGLISH, "Documentary");
+          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Edward");
+          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Snowden");
+          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Truth");
+          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Unveiled");
+          multipleChoicesString->getValues().add("/home/quentin/vlc_vocalys/media/Edward Snowden A Truth Unveiled Documentary.mp4").getKeywords().add(vlang::EN, "Documentary");
 
           VlcArchetypeContainer vlcArchetypeContainer(p_intf);
           Archetypes::Generical* openingArchetype = new Archetypes::Generical(&vlcArchetypeContainer, &VlcArchetypeContainer::openFile);
-          vocalib.addArchetype(openingArchetype);
-          openingArchetype->getKeywords().add(FRENCH, "ouvrir");
-          openingArchetype->getKeywords().add(FRENCH, "fichier");
-          openingArchetype->getKeywords().add(ENGLISH, "open");
-          openingArchetype->getKeywords().add(ENGLISH, "file");
-          openingArchetype->addParameter(multipleChoicesString);
+          vocalib.getFunctions().add(openingArchetype);
+          openingArchetype->getKeywords().add(vlang::FR, "ouvrir");
+          openingArchetype->getKeywords().add(vlang::FR, "fichier");
+          openingArchetype->getKeywords().add(vlang::EN, "open");
+          openingArchetype->getKeywords().add(vlang::EN, "file");
+          openingArchetype->getParameters().add(multipleChoicesString);
       while(QCoreApplication::closingDown() == false)
       {
         QCoreApplication::processEvents();
         vocalib.update();
       }
-      
+
     msg_Dbg( p_intf, "QApp exec() finished" );
     if (p_mi != NULL)
     {
