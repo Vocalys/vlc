@@ -579,8 +579,7 @@ static void *Thread( void *obj )
     namespace vap = vocalys::archetypes::parameter;
 
       vocalys::init();
-      vocalys::API vocalib("Hello World");
-      vocalib.init();
+      vocalys::API vocalib("VLC");
       vaf::Generical* pauseArchetype = new vaf::Generical(THEMIM, &MainInputManager::pause);
       vocalib.getFunctions().add(pauseArchetype);
       pauseArchetype->getKeywords().add(vlang::FR, "pause");
@@ -671,6 +670,8 @@ static void *Thread( void *obj )
           openingArchetype->getKeywords().add(vlang::EN, "open");
           openingArchetype->getKeywords().add(vlang::EN, "file");
           openingArchetype->getParameters().add(multiString);
+
+          vocalib.init();
       while(QCoreApplication::closingDown() == false)
       {
         QCoreApplication::processEvents();
