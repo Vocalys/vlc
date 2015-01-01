@@ -68,6 +68,7 @@
 // FOR VOCALYS
 // #include "vocalys_media_folder.hpp"
 #include "vlc_archetype_container.hpp"
+#include "actions_manager.hpp"
 
 /*****************************************************************************
  * Local prototypes.
@@ -604,6 +605,61 @@ static void *Thread( void *obj )
       vocalib.getFunctions().add(nextArchetype);
       nextArchetype->getKeywords().add(vlang::FR, "suivant");
       nextArchetype->getKeywords().add(vlang::EN, "next");
+
+      ActionsManager* actionManager = ActionsManager::getInstance();
+
+      vaf::Generical* muteArchetype = new vaf::Generical(actionManager, &ActionsManager::toggleMuteAudio);
+      vocalib.getFunctions().add(muteArchetype);
+      muteArchetype->getKeywords().add(vlang::FR, "muet");
+      muteArchetype->getKeywords().add(vlang::EN, "mute");
+
+      // increase volume should be 4 times higher than this
+      vaf::Generical* increaseVolumeArchetype = new vaf::Generical(actionManager, &ActionsManager::AudioUp);
+      vocalib.getFunctions().add(increaseVolumeArchetype);
+      increaseVolumeArchetype->getKeywords().add(vlang::FR, "volume");
+      increaseVolumeArchetype->getKeywords().add(vlang::FR, "augmenter");
+      increaseVolumeArchetype->getKeywords().add(vlang::EN, "increase");
+      increaseVolumeArchetype->getKeywords().add(vlang::EN, "volume");
+
+      vaf::Generical* decreaseVolumeArchetype = new vaf::Generical(actionManager, &ActionsManager::AudioDown);
+      vocalib.getFunctions().add(decreaseVolumeArchetype);
+      decreaseVolumeArchetype->getKeywords().add(vlang::FR, "volume");
+      decreaseVolumeArchetype->getKeywords().add(vlang::FR, "diminuer");
+      decreaseVolumeArchetype->getKeywords().add(vlang::EN, "decrease");
+      decreaseVolumeArchetype->getKeywords().add(vlang::EN, "volume");
+
+      vaf::Generical* snapshotArchetype = new vaf::Generical(actionManager, &ActionsManager::snapshot);
+      vocalib.getFunctions().add(snapshotArchetype);
+      snapshotArchetype->getKeywords().add(vlang::FR, "capture");
+      snapshotArchetype->getKeywords().add(vlang::FR, "d'ecran");
+      snapshotArchetype->getKeywords().add(vlang::EN, "snapshop");
+      snapshotArchetype->getKeywords().add(vlang::EN, "screenshot");
+
+      vaf::Generical* playListArchetype = new vaf::Generical(actionManager, &ActionsManager::playlist);
+      vocalib.getFunctions().add(playListArchetype);
+      playListArchetype->getKeywords().add(vlang::FR, "liste");
+      playListArchetype->getKeywords().add(vlang::FR, "de");
+      playListArchetype->getKeywords().add(vlang::FR, "lecture");
+      playListArchetype->getKeywords().add(vlang::EN, "snapshop");
+      playListArchetype->getKeywords().add(vlang::EN, "screenshot");
+
+      vaf::Generical* quitArchetype = new vaf::Generical(actionManager, &ActionsManager::quit);
+      vocalib.getFunctions().add(quitArchetype);
+      quitArchetype->getKeywords().add(vlang::FR, "quitter");
+      quitArchetype->getKeywords().add(vlang::FR, "quitte");
+      quitArchetype->getKeywords().add(vlang::EN, "quit");
+
+      vaf::Generical* slowerArchetype = new vaf::Generical(actionManager, &ActionsManager::slower);
+      vocalib.getFunctions().add(slowerArchetype);
+      slowerArchetype->getKeywords().add(vlang::FR, "plus");
+      slowerArchetype->getKeywords().add(vlang::FR, "lent");
+      slowerArchetype->getKeywords().add(vlang::EN, "slower");
+
+      vaf::Generical* fasterArchetype = new vaf::Generical(actionManager, &ActionsManager::faster);
+      vocalib.getFunctions().add(fasterArchetype);
+      fasterArchetype->getKeywords().add(vlang::FR, "plus");
+      fasterArchetype->getKeywords().add(vlang::FR, "lent");
+      fasterArchetype->getKeywords().add(vlang::EN, "slower");
 
       vaf::Generical* fullScreenArchetype = new vaf::Generical(static_cast<QWidget*>(p_mi), &QWidget::showFullScreen);
       vocalib.getFunctions().add(fullScreenArchetype);
