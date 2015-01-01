@@ -81,8 +81,11 @@ public slots:
     void record();
     void skipForward();
     void skipBackward();
+    void quit();
+    void slower();
+    void faster();
 
-protected slots:
+public slots:
     void fullscreen();
     void snapshot();
     void playlist();

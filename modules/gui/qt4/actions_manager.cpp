@@ -201,3 +201,17 @@ void ActionsManager::skipBackward()
         THEMIM->getIM()->jumpBwd();
 }
 
+void ActionsManager::quit()
+{
+    doAction(QUIT_ACTION);
+}
+
+void ActionsManager::slower()
+{
+    doAction(SLOWER_ACTION);
+}
+
+void ActionsManager::faster()
+{
+    doAction(FASTER_ACTION);
+}
