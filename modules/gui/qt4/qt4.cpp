@@ -578,7 +578,7 @@ static void *Thread( void *obj )
     namespace vlang = vocalys::lang;
     namespace vaf = vocalys::archetypes::function;
     namespace vap = vocalys::archetypes::parameter;
-
+ //   try {
       vocalys::init();
       vocalys::API vocalib("VLC");
       vaf::Generical* pauseArchetype = new vaf::Generical(THEMIM, &MainInputManager::pause);
@@ -640,8 +640,7 @@ static void *Thread( void *obj )
       playListArchetype->getKeywords().add(vlang::FR, "liste");
       playListArchetype->getKeywords().add(vlang::FR, "de");
       playListArchetype->getKeywords().add(vlang::FR, "lecture");
-      playListArchetype->getKeywords().add(vlang::EN, "snapshop");
-      playListArchetype->getKeywords().add(vlang::EN, "screenshot");
+      playListArchetype->getKeywords().add(vlang::EN, "playlist");
 
       vaf::Generical* quitArchetype = new vaf::Generical(actionManager, &ActionsManager::quit);
       vocalib.getFunctions().add(quitArchetype);
@@ -728,6 +727,11 @@ static void *Thread( void *obj )
           openingArchetype->getParameters().add(multiString);
 
           vocalib.init();
+      // }
+      // catch (...)
+      // {
+      //   std::cerr << "an exception was caught !" << std::endl;
+      // }
       while(QCoreApplication::closingDown() == false)
       {
         QCoreApplication::processEvents();
