@@ -20,7 +20,7 @@ SUFFIXES += .ui .h .hpp .moc.cpp
 
 libqt4_plugin_la_CXXFLAGS = $(AM_CXXFLAGS) $(QT_CFLAGS) -std=c++0x -I/usr/local/include -I/usr/local/include/vocalys
 libqt4_plugin_la_LIBADD = $(QT_LIBS)
-libqt4_plugin_la_LDFLAGS = $(AM_LDFLAGS) -rpath '$(guidir)' -lvocalys -lvocalys_system
+libqt4_plugin_la_LDFLAGS = $(AM_LDFLAGS) -rpath '$(guidir)' -lvocalys -lvocalys_system -lvocalys_filesystem
 if HAVE_OS2
 else
 if HAVE_WIN32
@@ -39,6 +39,8 @@ EXTRA_LTLIBRARIES = libqt4_plugin.la
 
 libqt4_plugin_la_SOURCES = \
 	qt4.cpp qt4.hpp \
+	vocalys_media_folder.cpp vocalys_media_folder.hpp \
+	vocalys_media_file.cpp vocalys_media_file.hpp \
 	menus.cpp menus.hpp \
 	main_interface.cpp main_interface.hpp \
 	dialogs_provider.cpp dialogs_provider.hpp \
